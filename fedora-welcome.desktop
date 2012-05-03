@@ -5,3 +5,4 @@ Icon=/usr/share/icons/Fedora/256x256/places/start-here.png
 Terminal=false
 Type=Application
 StartupNotify=true
+X-GNOME-Autostart-enabled=true
