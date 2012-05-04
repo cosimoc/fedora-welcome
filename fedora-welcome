@@ -116,7 +116,9 @@ Gtk.init(null, null);
 Gtk.Settings.get_default().gtk_application_prefer_dark_theme = true;
 
 // provided by the 'anaconda' package
-anacondaApp = Gio.DesktopAppInfo.new('liveinst.desktop');
+anacondaApp = Gio.DesktopAppInfo.new('anaconda.desktop');
+if (!anacondaApp)
+    anacondaApp = Gio.DesktopAppInfo.new('liveinst.desktop');
 
 if (anacondaApp) {
     let application = new Gtk.Application({ application_id: 'org.fedoraproject.welcome-screen',
