@@ -28,6 +28,11 @@ const Gtk = imports.gi.Gtk;
 const Lang = imports.lang;
 const Pango = imports.gi.Pango;
 
+const Gettext = imports.gettext;
+const _ = imports.gettext.gettext;
+
+const LOCALE_DIR = '/usr/share/locale';
+
 let anacondaApp = null;
 
 function makeLabel(label, button) {
@@ -55,7 +60,7 @@ const WelcomeWindow = new Lang.Class({
                                                 type: Gtk.WindowType.TOPLEVEL,
                                                 default_width: 600,
                                                 default_height: 550,
-                                                title: 'Welcome to Fedora',
+                                                title: _("Welcome to Fedora"),
                                                 window_position: Gtk.WindowPosition.CENTER });
 
       let mainGrid = new Gtk.Grid({ orientation: Gtk.Orientation.VERTICAL,
@@ -75,7 +80,7 @@ const WelcomeWindow = new Lang.Class({
                                      spacing: 16 });
       tryContent.add(new Gtk.Image({ icon_name: 'media-cdrom',
                                      pixel_size: 256 }));
-      tryContent.add(makeLabel('Try Fedora', true));
+      tryContent.add(makeLabel(_("Try Fedora"), true));
 
       let tryButton = new Gtk.Button({ child: tryContent });
       buttonBox.add(tryButton);
@@ -93,9 +98,9 @@ const WelcomeWindow = new Lang.Class({
       let installButton = new Gtk.Button({ child: installContent });
       buttonBox.add(installButton);
 
-      this._label = makeLabel('You are currently running Fedora from live media.\n'
-                            + 'You can install Fedora now, or choose "Install to Hard Drive"\n'
-                            + 'in the Activities overview at any later time.', false);
+      this._label = makeLabel(_("You are currently running Fedora from live media.\n"
+                              + "You can install Fedora now, or choose \"Install to Hard Drive\"\n"
+                              + "in the Activities overview at any later time."), false);
       mainGrid.add(this._label);
 
       installButton.connect('clicked', Lang.bind(this,
@@ -113,11 +118,11 @@ const WelcomeWindow = new Lang.Class({
                                           halign: Gtk.Align.CENTER });
               mainGrid.add(image);
 
-              this._label = makeLabel('You can choose "Install to Hard Drive"\n'
-                                    + 'in the Activities overview at any later time.', false);
+              this._label = makeLabel(_("You can choose \"Install to Hard Drive\"\n"
+                                      + "in the Activities overview at any later time."), false);
               mainGrid.add(this._label);
 
-              let closeLabel = makeLabel('Close', true);
+              let closeLabel = makeLabel(_("Close"), true);
               closeLabel.margin = 10;
               let button = new Gtk.Button({ child: closeLabel,
                                             halign: Gtk.Align.CENTER });
@@ -131,6 +136,9 @@ const WelcomeWindow = new Lang.Class({
           }));
   }
 });
+
+Gettext.bindtextdomain('anaconda', LOCALE_DIR);
+Gettext.textdomain('anaconda');
 
 GLib.set_prgname('fedora-welcome');
 Gtk.init(null, null);
