@@ -108,7 +108,7 @@ const WelcomeWindow = new Lang.Class({
       let installButton = new Gtk.Button({ child: installContent });
       buttonBox.add(installButton);
 
-      this._label = makeLabel(_("You are currently running Fedora from live media.\nYou can install Fedora now, or choose \"Install to Hard Drive\" in the Activities overview at any later time."), false);
+      this._label = makeLabel(_("You are currently running Fedora from live media.\nYou can install Fedora now, or choose \"Install to Hard Drive\" in the Activities Overview at any later time."), false);
       mainGrid.add(this._label);
 
       installButton.connect('clicked', Lang.bind(this,
@@ -126,7 +126,7 @@ const WelcomeWindow = new Lang.Class({
                                           halign: Gtk.Align.CENTER });
               mainGrid.add(image);
 
-              this._label = makeLabel(_("You can choose \"Install to Hard Drive\"\nin the Activities overview at any later time."), false);
+              this._label = makeLabel(_("You can choose \"Install to Hard Drive\"\nin the Activities Overview at any later time."), false);
               mainGrid.add(this._label);
 
               let closeLabel = makeLabel(_("Close"), true);
