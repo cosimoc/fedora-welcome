@@ -21,6 +21,7 @@
  *
  */
 
+const Gdk = imports.gi.Gdk;
 const GdkPixbuf = imports.gi.GdkPixbuf;
 const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
@@ -62,6 +63,15 @@ const WelcomeWindow = new Lang.Class({
                                                 default_height: 550,
                                                 title: _("Welcome to Fedora"),
                                                 window_position: Gtk.WindowPosition.CENTER });
+      this.window.connect('key-press-event', Lang.bind(this,
+          function(w, event) {
+              let key = event.get_keyval()[1];
+
+              if (key == Gdk.KEY_Escape)
+                  this.window.destroy();
+
+              return false;
+          }));
 
       let mainGrid = new Gtk.Grid({ orientation: Gtk.Orientation.VERTICAL,
                                     row_spacing: 16,
