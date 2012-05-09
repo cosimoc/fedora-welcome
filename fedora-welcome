@@ -138,6 +138,7 @@ const WelcomeWindow = new Lang.Class({
                       this.window.destroy();
                   }));
               mainGrid.add(button);
+              button.grab_focus();
 
               mainGrid.show_all();
           }));
